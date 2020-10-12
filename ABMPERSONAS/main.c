@@ -8,8 +8,8 @@
 #include "deportes.h"
 
 
-#define TAM 10
-#define TAM_D 8
+#define TAM 11
+#define TAM_D 6
 #define ASC 0
 #define DEC 1
 
@@ -18,7 +18,8 @@ char menu();
 //informes
 int mostrarXsexo(ePersona gente[],int tam,eDeporte sports[],int tamD,int sexo);
 int mostrarXanio(ePersona gente[],int tam,eDeporte sports[],int tamD,int anio);
-//int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD);
+int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD);
+int mostraPersonasXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD);
 int main()
 
 {
@@ -37,11 +38,7 @@ int main()
         {1002, "Patin"},
         {1003, "Esqui"},
         {1004, "Surf"},
-        {1005, "Skate"},
-        {1006,"Ajedrez"},
-        {1007,"Natacion"},
-        {1008,"Volley"},
-        {1009,"Handball"}
+        {1005, "Skate"}
     };
 
     ePersona lista[TAM];
@@ -54,7 +51,7 @@ int main()
     {
         printf("Inicializacion exitosa\n");
     }
-    proximoLegajo+= harcodearPersonas(lista,TAM,TAM_D);
+    proximoLegajo+= harcodearPersonas(lista,TAM,10);
     system("pause");
 
     do
@@ -109,14 +106,13 @@ int main()
             break;
         case 'e':
             ordenarPersonaSexoAltura(lista,TAM,DEC,ASC); //MENOR A MAYOR...F....M...
-            printf("Ordenado con exito");
+            printf("Ordenado con exito!!(MASCULINO Y FEMENINO, MENOR A MAYOR)\n");
             system("pause");
             break;
         case 'f':
             printf("Ingrese que informe desea\n");
             printf("1>Mostrar por sexo\n");
             printf("2>Mostrar por anio\n");
-            printf("3>Ordenar por sexo y altura");
             scanf("%d",&informes);
             switch(informes)
             {
@@ -147,6 +143,17 @@ int main()
             mostrarDeportes(deportes,TAM_D);
             system("pause");
             break;
+        case 'j':
+            system("cls");
+            mostrarXdeporte(lista,TAM,deportes,TAM_D);
+            system("pause");
+            break;
+        case 'k':
+            system("cls");
+            mostraPersonasXdeporte(lista,TAM,deportes,TAM_D);
+            system("pause");
+            break;
+
         case 'z':
             printf("Confirma salida?\n");
             fflush(stdin);
@@ -163,7 +170,6 @@ int main()
     return 0;
 }
 
-
 char menu()
 {
     char opcion;
@@ -173,12 +179,13 @@ char menu()
     printf("B>BAJA\n");
     printf("C>MODIFICAR\n");
     printf("D>LISTAR\n");
-    printf("E>ORDENAR\n");
+    printf("E>ORDENAR POR SEXO Y ALTURA\n");
     printf("F>INFORMES\n");
     printf("G>\n");
     printf("H>\n");
     printf("I>LISTAR DEPORTES\n");
-    printf("LISTAR POR DEPORTE\n");
+    printf("J>MOSTRAR POR DEPORTE\n");
+    printf("K>TODOS LOS DEPORTES");
     printf("Z>SALIR\n");
     printf("INGRESE OPCION:\n ");
     fflush(stdin);
@@ -240,25 +247,79 @@ int mostrarXanio(ePersona gente[],int tam,eDeporte sports[],int tamD,int anio)
     return error;
 }
 
-
-/*int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
+int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
 {
     int error=1;
     int idDeporteSeleccionado;
+    char deporte[20];
+    int flag=0;
     if(gente !=NULL&& sports!= NULL&& tam>0 && tamD>0)
     {
+
         system("cls");
-        printf("**Informe de programas por deporte**\n\n");
-        mostrarDeportes(sports,tamD)
+        printf("**Informe de personas por deporte**\n\n");
+        mostrarDeportes(sports,tamD);
         printf("Ingrese deporte ");
         scanf("%d,",&idDeporteSeleccionado);
+        while (validarIdDeporte(sports,tamD,idDeporteSeleccionado)==0)
+        {
+            mostrarDeportes(sports,tamD);
+            printf("ID INVALIDO: Ingrese id deporte\n");
+            scanf("%d",&idDeporteSeleccionado);
+        }
+        cargarDescripcionDeporte(sports,tamD,idDeporteSeleccionado,deporte);
 
-        printf("L)
+        printf("Listado de personas que hacen %s \n ",deporte);
 
+        for(int i=0; i<tam; i++)
+            if (gente[i].isEmpty == 0 && gente[i].idDeporte == idDeporteSeleccionado)
+            {
+                printf("%s\n",gente[i].nombre);
+                flag = 1;
+            }
+        if (flag==0)
+        {
+            printf("No hay personas que practican\n");
+        }
         error=0;
     }
     return error;
-}*/
+}
+
+int mostraPersonasXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
+{
+    int error=1;
+    char deporte[20];
+    int flag=0;
+
+    if(gente !=NULL&& sports!= NULL&& tam>0 && tamD>0)
+    {
+        system("cls");
+        printf("**Informe de personas en todos los deportes**\n\n");
+        //for que recorre deportes
+        for(int d=0; d<tamD; d++)
+        {
+            flag=0;
+            cargarDescripcionDeporte(sports,tamD,sports[d].id,deporte);
+            printf("Deportes: %s\n\n",deporte);
+            for(int p=0; p<tam; p++)
+            {
+                if(gente[p].isEmpty==0 && gente[p].idDeporte == sports[d].id)
+                {
+                    mostrarPersona(gente[p],sports,tamD);
+                    flag=1;
+                }
+            }
+            if(flag==0)
+            {
+                printf("Nadie practica este deporte");
+            }
+            printf("\n\n");
+        }
+        error=0;
+    }
+    return error;
+}
 
 
 
