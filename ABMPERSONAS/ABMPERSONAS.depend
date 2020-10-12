@@ -36,3 +36,40 @@
 
 1602402847 h:\abmpersonas\deportes.h
 
+1602497253 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\deportes.c
+	<stdio.h>
+	<string.h>
+	"deportes.h"
+
+1602497253 c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\deportes.h
+
+1602260490 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\fecha.c
+
+1602497297 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"persona.h"
+	"fecha.h"
+	"deportes.h"
+
+1602496592 c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\persona.h
+	"fecha.h"
+	"deportes.h"
+
+1602343765 c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\fecha.h
+
+1602497771 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\persona.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"persona.h"
+	"fecha.h"
+	"deportes.h"
+	"dataStore.h"
+
+1602495104 c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\abmpersonas\datastore.h
+	"fecha.h"
+

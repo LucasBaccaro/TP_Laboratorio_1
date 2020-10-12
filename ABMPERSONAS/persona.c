@@ -10,7 +10,7 @@
 
 #define TAM 10
 
-#define TAM_D 7
+#define TAM_D 10
 int inicializarPersona(ePersona gente[],int tam)
 {
     int error= 1;
@@ -44,11 +44,12 @@ int buscarLibre(ePersona gente[],int tam)
     return indice;
 }
 //ALTA
-int altaPersona(ePersona gente[],int tam,int legajo)
+int altaPersona(ePersona gente[],int tam,eDeporte sports[],int tamD,int legajo)
 {
     int error= 1;
     int indice;
     ePersona nuevaPersona;
+    int idDeporteSeleccionado;
 
     if(gente!=NULL && tam >0 && legajo >0)
     {
@@ -75,8 +76,19 @@ int altaPersona(ePersona gente[],int tam,int legajo)
             printf("Ingrese Altura\n ");
             scanf("%f",&nuevaPersona.altura);
 
-            printf("Ingrese fecha a modificar dd/mm/aa");
+            printf("Ingrese fecha dd/mm/aa");
             scanf("%d/%d/%d",&nuevaPersona.fNac.dia,&nuevaPersona.fNac.mes,&nuevaPersona.fNac.anio);
+
+            mostrarDeportes(sports,tamD);
+            printf("Ingrese id deporte\n");
+            scanf("%d",&idDeporteSeleccionado);
+            while (validarIdDeporte(sports,tamD,idDeporteSeleccionado)==0)
+            {
+                mostrarDeportes(sports,tamD);
+                printf("ID INVALIDO: Ingrese id deporte\n");
+                scanf("%d",&idDeporteSeleccionado);
+            }
+            nuevaPersona.idDeporte=idDeporteSeleccionado;
 
             printf("Alta exitosa!!\n");
 
@@ -179,6 +191,7 @@ int modificarPersona (ePersona gente[],int tam,eDeporte sports[],int tamD)
     int id;
     char confirma;
     int opcion;
+    int idDeporteSeleccionado;
     ePersona nuevaModificacion;
 
     printf("**Tabla de modificaciones**\n\n");
@@ -202,7 +215,7 @@ int modificarPersona (ePersona gente[],int tam,eDeporte sports[],int tamD)
             nuevaModificacion=gente[indice];
 
             printf("Que desea modificar?\n");
-            printf("1>NOMBRE\n2>SEXO\n3>ALTURA\n4>FECHA\n");
+            printf("1>NOMBRE\n2>SEXO\n3>ALTURA\n4>FECHA\n5>DEPORTE");
             fflush(stdin);
             scanf("%d",&opcion);
 
@@ -226,6 +239,10 @@ int modificarPersona (ePersona gente[],int tam,eDeporte sports[],int tamD)
                 printf("Ingrese fecha a modificar dd/mm/aa");
                 scanf("%d/%d/%d",&nuevaModificacion.fNac.dia,&nuevaModificacion.fNac.mes,&nuevaModificacion.fNac.anio);
                 break;
+            case 5:
+                mostrarDeportes(sports,tamD);
+                printf("Ingrese id deporte\n");
+                scanf("%d",&idDeporteSeleccionado);
             }
             printf("Confirma cambio?? ");
             fflush(stdin);
@@ -239,6 +256,7 @@ int modificarPersona (ePersona gente[],int tam,eDeporte sports[],int tamD)
                 gente[indice].fNac.dia=nuevaModificacion.fNac.dia;
                 gente[indice].fNac.mes=nuevaModificacion.fNac.mes;
                 gente[indice].fNac.anio=nuevaModificacion.fNac.anio;
+                gente[indice].idDeporte=idDeporteSeleccionado;
 
                 nuevaModificacion=gente[indice];
                 error=0;
@@ -344,12 +362,13 @@ int harcodearPersonas(ePersona gente[],int tam,int cant)
 void mostrarPersona (ePersona x,eDeporte sports[],int tam )
 {
     char descDeporte[20];
-   if(cargarDescripcionDeporte(sports,tam,x.idDeporte,descDeporte)==0)
-   {
-       printf(" %4d     %10s              %c             %3.2f            %02d/%02d/%d           %s\n",x.legajo,x.nombre,x.sexo,x.altura,x.fNac.dia,x.fNac.mes,x.fNac.anio,descDeporte);
-   }else
-   {
-       printf("Problemas\n");
-   }
+    if(cargarDescripcionDeporte(sports,tam,x.idDeporte,descDeporte)==0)
+    {
+        printf(" %4d     %10s              %c             %3.2f            %02d/%02d/%d           %s\n",x.legajo,x.nombre,x.sexo,x.altura,x.fNac.dia,x.fNac.mes,x.fNac.anio,descDeporte);
+    }
+    else
+    {
+        printf("Problemas\n");
+    }
 }
 

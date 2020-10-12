@@ -39,3 +39,17 @@ int cargarDescripcionDeporte (eDeporte sports[],int tam, int id,char descripcion
     }
     return error;
 }
+
+int validarIdDeporte(eDeporte sports[],int tam, int id)
+{
+    int esValido = 0;
+    for (int i=0; i < tam; i++)
+    {
+        if(sports[i].id == id)
+        {
+            esValido=1;
+            break;
+        }
+    }
+    return esValido;
+}

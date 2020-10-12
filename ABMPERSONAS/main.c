@@ -9,7 +9,7 @@
 
 
 #define TAM 10
-#define TAM_D 10
+#define TAM_D 8
 #define ASC 0
 #define DEC 1
 
@@ -63,7 +63,7 @@ int main()
         {
         case 'a':
             mostrarPersonas(lista,TAM,deportes,TAM_D);
-            if (altaPersona(lista,TAM,proximoLegajo)==0)
+            if (altaPersona(lista,TAM,deportes,TAM_D,proximoLegajo)==0)
             {
                 proximoLegajo++;
             }

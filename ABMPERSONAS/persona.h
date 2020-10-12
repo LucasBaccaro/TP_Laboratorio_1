@@ -18,7 +18,7 @@ typedef struct
 
 int inicializarPersona(ePersona gente[],int tam);
 int buscarLibre(ePersona gente[],int tam);
-int altaPersona(ePersona gente[],int tam,int legajo);
+int altaPersona(ePersona gente[],int tam,eDeporte sports[],int tamD,int legajo);
 int bajaPersona(ePersona gente[],int tam,eDeporte sports[],int tamD);
 int buscarPersona(ePersona gente[],int tam,int legajo);
 int modificarPersona (ePersona gente[],int tam,eDeporte sports[],int tamD);

@@ -13,3 +13,4 @@ char descripcion[20];
 void mostrarDeporte(eDeporte x);
 void mostrarDeportes(eDeporte sports[],int tam);
 int cargarDescripcionDeporte (eDeporte sports[],int tam, int id,char descripcion[]);
+int validarIdDeporte(eDeporte sports[],int tam, int id);
