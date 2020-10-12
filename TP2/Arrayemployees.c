@@ -235,7 +235,7 @@ int modificarEmpleado (eEmpleado empleados[],int tam)
                 nuevaModificacion.sector=validarEntero(empleados,"Ingrese sector a modificar ","Error,reingrese \n",1,5);
                 break;
             }
-            printf("Confirma cambio?? ");
+            printf("Confirma cambio?? s/n ");
             fflush(stdin);
             scanf("%c",&confirma);
 

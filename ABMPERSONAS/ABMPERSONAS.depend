@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1602495525 source:h:\abmpersonas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"persona.h"
+	"fecha.h"
+	"deportes.h"
+
+1602260490 source:h:\abmpersonas\fecha.c
+
+1602343765 h:\abmpersonas\fecha.h
+
+1602495969 h:\abmpersonas\persona.h
+	"fecha.h"
+	"deportes.h"
+
+1602495908 source:h:\abmpersonas\persona.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"persona.h"
+	"fecha.h"
+	"deportes.h"
+	"dataStore.h"
+
+1602495104 h:\abmpersonas\datastore.h
+	"fecha.h"
+
+1602402847 source:h:\abmpersonas\deportes.c
+	<stdio.h>
+	<string.h>
+	"deportes.h"
+
+1602402847 h:\abmpersonas\deportes.h
+

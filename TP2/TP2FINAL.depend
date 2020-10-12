@@ -13,3 +13,17 @@
 
 1601656824 h:\tp2final\arrayemployees.h
 
+1602320780 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Arrayemployees.h"
+
+1601656824 c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\tp2\arrayemployees.h
+
+1602320666 source:c:\users\lucas\onedrive\escritorio\tp_laboratorio_1\tp_laboratorio_1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Arrayemployees.h"
+

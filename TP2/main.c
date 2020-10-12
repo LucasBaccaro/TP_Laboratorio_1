@@ -9,6 +9,7 @@
 
 int main()
 {
+
     int id=100;
     eEmpleado lista [TAM] ; //{{100,"juan","perez",15000,3,0},{101,"hol","perfgez",150450,2,0} };
     int seguir='s';
@@ -140,10 +141,11 @@ int main()
             printf("Opcion invalida\n");
             system ("pause");
         }
-        if(lista->isEmpty)
+
+    }
+    if(lista->isEmpty)
         {
             banderaAlta=0;
         }
-    }
     return 0;
 }
