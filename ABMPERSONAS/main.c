@@ -20,6 +20,7 @@ int mostrarXsexo(ePersona gente[],int tam,eDeporte sports[],int tamD,int sexo);
 int mostrarXanio(ePersona gente[],int tam,eDeporte sports[],int tamD,int anio);
 int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD);
 int mostraPersonasXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD);
+int contarDeportistas(ePersona gente[],int tam,eDeporte sports[],int tamD);
 int main()
 
 {
@@ -153,6 +154,10 @@ int main()
             mostraPersonasXdeporte(lista,TAM,deportes,TAM_D);
             system("pause");
             break;
+        case 'l':
+            contarDeportistas(lista,TAM,deportes,TAM_D);
+            system("pause");
+            break;
 
         case 'z':
             printf("Confirma salida?\n");
@@ -169,7 +174,6 @@ int main()
     while(seguir=='s');
     return 0;
 }
-
 char menu()
 {
     char opcion;
@@ -185,14 +189,14 @@ char menu()
     printf("H>\n");
     printf("I>LISTAR DEPORTES\n");
     printf("J>MOSTRAR POR DEPORTE\n");
-    printf("K>TODOS LOS DEPORTES");
+    printf("K>TODOS LOS DEPORTES\n");
+    printf("L>CANTIDAD DEPORTISTAS\n");
     printf("Z>SALIR\n");
     printf("INGRESE OPCION:\n ");
     fflush(stdin);
     opcion=tolower(getchar());
     return opcion;
 }
-
 int mostrarXsexo(ePersona gente[],int tam,eDeporte sports[],int tamD,int sexo)
 {
     int error =1;
@@ -219,7 +223,6 @@ int mostrarXsexo(ePersona gente[],int tam,eDeporte sports[],int tamD,int sexo)
     }
     return error;
 }
-
 int mostrarXanio(ePersona gente[],int tam,eDeporte sports[],int tamD,int anio)
 {
     int error =1;
@@ -246,7 +249,6 @@ int mostrarXanio(ePersona gente[],int tam,eDeporte sports[],int tamD,int anio)
     }
     return error;
 }
-
 int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
 {
     int error=1;
@@ -272,11 +274,15 @@ int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
         printf("Listado de personas que hacen %s \n ",deporte);
 
         for(int i=0; i<tam; i++)
+        {
+
+
             if (gente[i].isEmpty == 0 && gente[i].idDeporte == idDeporteSeleccionado)
             {
                 printf("%s\n",gente[i].nombre);
                 flag = 1;
             }
+        }
         if (flag==0)
         {
             printf("No hay personas que practican\n");
@@ -285,7 +291,6 @@ int mostrarXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
     }
     return error;
 }
-
 int mostraPersonasXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
 {
     int error=1;
@@ -320,6 +325,45 @@ int mostraPersonasXdeporte(ePersona gente[],int tam,eDeporte sports[],int tamD)
     }
     return error;
 }
+int contarDeportistas(ePersona gente[],int tam,eDeporte sports[],int tamD)
+{
+    int error=1;
+    int idDeporteSeleccionado;
+    char deporte[20];
+    int contador = 0;
+    if(gente !=NULL&& sports!= NULL&& tam>0 && tamD>0)
+    {
+
+        system("cls");
+        printf("**Cantidad personas por deporte**\n\n");
+        mostrarDeportes(sports,tamD);
+        printf("Ingrese deporte ");
+        scanf("%d,",&idDeporteSeleccionado);
+        while (validarIdDeporte(sports,tamD,idDeporteSeleccionado)==0)
+        {
+            mostrarDeportes(sports,tamD);
+            printf("ID INVALIDO: Ingrese id deporte\n");
+            scanf("%d",&idDeporteSeleccionado);
+        }
+        cargarDescripcionDeporte(sports,tamD,idDeporteSeleccionado,deporte);
+
+        printf("Listado de personas que hacen %s \n ",deporte);
+
+        for(int i=0; i<tam; i++)
+        {
+
+            if (gente[i].isEmpty == 0 && gente[i].idDeporte == idDeporteSeleccionado)
+            {
+                contador++;
+            }
+        }
+        printf("Cantidad de personas que hacen %s %d \n ",deporte,contador);
+
+        error=0;
+    }
+    return error;
+}
+
 
 
 
